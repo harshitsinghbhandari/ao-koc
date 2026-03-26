@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "architecture-audit": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "4df0ce4bf1c9a51b93c9ce8db524a1a03e133870006743f30e19ea81ac59a264"
+    },
+    "itemized-functions": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "93ebfafad99cbdbd27bb718d60f95ef4b5731b94aa4c833dd6042df4fd2e5020"
+    },
+    "skill-creator": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "b122f4d1e91aa1d83027e050b5b37c3156203ee85458d7b1360bc48167c9e02a"
+    },
+    "update-changelog": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "9d76f61e0c3a22488c1eda6540da427943d73a481ce74748eec30bd595540f5f"
+    }
+  }
+}
