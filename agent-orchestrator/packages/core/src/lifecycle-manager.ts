@@ -37,6 +37,8 @@ import { updateMetadata } from "./metadata.js";
 import { getSessionsDir } from "./paths.js";
 import { createCorrelationId, createProjectObserver } from "./observability.js";
 import { resolveAgentSelection, resolveSessionRole } from "./agent-selection.js";
+import { EventBus } from "./events/bus.js";
+import { EventTypes } from "./events/types.js";
 
 /** Parse a duration string like "10m", "30s", "1h" to milliseconds. */
 function parseDuration(str: string): number {
@@ -179,6 +181,7 @@ export interface LifecycleManagerDeps {
   sessionManager: SessionManager;
   /** When set, only poll sessions belonging to this project. */
   projectId?: string;
+  eventBus?: EventBus; // Inject the typed EventBus to avoid sinkholing
 }
 
 /** Track attempt counts for reactions per session. */
@@ -191,6 +194,7 @@ interface ReactionTracker {
 export function createLifecycleManager(deps: LifecycleManagerDeps): LifecycleManager {
   const { config, registry, sessionManager, projectId: scopedProjectId } = deps;
   const observer = createProjectObserver(config, "lifecycle-manager");
+  const eventBus = deps.eventBus ?? new EventBus(); // Initialize the typed EventBus if not provided
 
   const states = new Map<SessionId, SessionStatus>();
   const reactionTrackers = new Map<string, ReactionTracker>(); // "sessionId:reactionKey"
@@ -716,6 +720,20 @@ export function createLifecycleManager(deps: LifecycleManagerDeps): LifecycleMan
       // State transition detected
       states.set(session.id, newStatus);
       updateSessionMetadata(session, { status: newStatus });
+
+      // Publish event to typed EventBus
+      eventBus.publish({
+        event_type: newStatus === "merged" || newStatus === "done"
+          ? EventTypes.EXECUTION_SUCCESS
+          : newStatus === "errored" || newStatus === "killed" ? EventTypes.EXECUTION_FAILURE : EventTypes.TASK_RECEIVED, // Map states
+        source_agent: "system",
+        target_agent: "broadcast",
+        task_id: session.id,
+        priority: 3,
+        requires_ack: false,
+        payload: { oldStatus, newStatus, session: session.id, project: session.projectId },
+      });
+
       observer.recordOperation({
         metric: "lifecycle_poll",
         operation: "lifecycle.transition",
