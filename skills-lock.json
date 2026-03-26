@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "4df0ce4bf1c9a51b93c9ce8db524a1a03e133870006743f30e19ea81ac59a264"
     },
+    "code-quality-audit": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "ec9864c5e8137cbd95ea54b4696ce12396ab8843a851ed67b41213770dc82f81"
+    },
     "itemized-functions": {
       "source": "harshitsinghbhandari/domain-expansion",
       "sourceType": "github",
@@ -15,6 +20,11 @@
       "source": "harshitsinghbhandari/domain-expansion",
       "sourceType": "github",
       "computedHash": "b122f4d1e91aa1d83027e050b5b37c3156203ee85458d7b1360bc48167c9e02a"
+    },
+    "test-coverage-audit": {
+      "source": "harshitsinghbhandari/domain-expansion",
+      "sourceType": "github",
+      "computedHash": "0c6c2b15d856db2a1bafdcff6ff2368eafdef778c8dfcbe1b35c05b29ef8ddae"
     },
     "update-changelog": {
       "source": "harshitsinghbhandari/domain-expansion",
