@@ -146,10 +146,11 @@ describe("scripts/ao-doctor.sh", () => {
     const oldTimestamp = new Date(Date.now() - 2 * 60 * 60 * 1000);
     utimesSync(staleFile, oldTimestamp, oldTimestamp);
 
+    const systemPath = "/usr/bin:/bin:/usr/sbin:/sbin";
     const result = spawnSync("bash", [scriptPath, "--fix"], {
       env: {
         ...process.env,
-        PATH: `${binDir}:${process.env.PATH || ""}`,
+        PATH: `${binDir}:${systemPath}`,
         AO_REPO_ROOT: fakeRepo,
         AO_CONFIG_PATH: configPath,
         AO_DOCTOR_TMP_ROOT: tmpRoot,
