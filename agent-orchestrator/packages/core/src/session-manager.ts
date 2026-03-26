@@ -44,6 +44,7 @@ import {
   isOrchestratorSession,
   PR_STATE,
 } from "./types.js";
+import { initBrain } from "./brain/store.js";
 import {
   readMetadataRaw,
   readArchivedMetadataRaw,
@@ -942,6 +943,7 @@ export function createSessionManager(deps: SessionManagerDeps): OpenCodeSessionM
     // Validate and store .origin file (new architecture only)
     if (config.configPath) {
       validateAndStoreOrigin(config.configPath, project.path);
+      initBrain(config.configPath, project.path);
     }
 
     // Determine session ID — atomically reserve to prevent concurrent collisions
@@ -1237,6 +1239,7 @@ export function createSessionManager(deps: SessionManagerDeps): OpenCodeSessionM
     // Validate and store .origin file
     if (config.configPath) {
       validateAndStoreOrigin(config.configPath, project.path);
+      initBrain(config.configPath, project.path);
     }
 
     // Setup agent hooks for automatic metadata updates

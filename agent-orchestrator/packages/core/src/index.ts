@@ -79,6 +79,12 @@ export { generateOrchestratorPrompt } from "./orchestrator-prompt.js";
 export type { OrchestratorPromptConfig } from "./orchestrator-prompt.js";
 
 
+// Events — Typed Event Bus (APEX Brain L2/L4)
+export * from "./events/index.js";
+
+// Brain — Local Context Sovereignity (APEX L2)
+export * from "./brain/index.js";
+
 // Global pause constants and utilities
 export {
   GLOBAL_PAUSE_UNTIL_KEY,
