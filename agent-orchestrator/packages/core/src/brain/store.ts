@@ -10,6 +10,7 @@ export interface ApexBrainState {
   componentDependencies: Record<string, string[]>;
   adrHistory: Record<string, any>;
   trustScores: Record<string, number>;
+  perceptionContext?: Record<string, any>;
 }
 
 /**
@@ -20,6 +21,7 @@ const DEFAULT_STATE: ApexBrainState = {
   componentDependencies: {},
   adrHistory: {},
   trustScores: {},
+  perceptionContext: {},
 };
 
 /**

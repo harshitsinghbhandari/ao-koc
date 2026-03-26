@@ -35,6 +35,9 @@ export const EventTypes = {
   REVIEW_APPROVED: "REVIEW_APPROVED",
   MERGE_INITIATED: "MERGE_INITIATED",
   HUMAN_GATE_TRIGGERED: "HUMAN_GATE_TRIGGERED",
+
+  // 3. State & Context Events
+  PERCEPTION_UPDATE: "PERCEPTION_UPDATE",
 } as const;
 
 export type ApexEventType = typeof EventTypes[keyof typeof EventTypes];
